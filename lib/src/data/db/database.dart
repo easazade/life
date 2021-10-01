@@ -20,7 +20,22 @@ class Database {
     return Database._(dataNodesBox);
   }
 
+  Future saveDataNode(DataNode dataNode) => _dataNodes.add(dataNode);
+
   Future clearAll() async {
     await _dataNodes.clear();
+  }
+
+  List<DataNode> getRootNodes() => _dataNodes.values.toList();
+
+  Future deleteDataNode(DataNode dataNode) async {
+    await _dataNodes.delete(dataNode.key);
+  }
+
+  Future addInitialData() async {
+    var node1 = DataNode(id: 0, question: 'مشکلت چیه؟', answer: null, children: []);
+    var node2 = DataNode(id: 1, question: 'چرا حالت خوب نیست؟', answer: null, children: []);
+    await saveDataNode(node1);
+    await saveDataNode(node2);
   }
 }

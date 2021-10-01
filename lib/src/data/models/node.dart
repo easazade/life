@@ -7,16 +7,14 @@ part 'node.g.dart';
 
 @freezed
 @HiveType(typeId: 0)
-abstract class DataNode implements _$DataNode {
+class DataNode extends HiveObject with _$DataNode {
   DataNode._();
 
   @JsonSerializable()
   factory DataNode({
-    @HiveField(0) @Default(0) final int id,
+    @HiveField(0) @JsonKey(name: 'id') @Default(0) final int id,
     @HiveField(1) final String? question,
     @HiveField(2) final String? answer,
     @HiveField(3) @Default([]) final List<DataNode> children,
   }) = DN;
-
-  // factory DataNode.fromJson(Map<String, dynamic> json) => _$DataNodeFromJson(json);
 }

@@ -38,7 +38,36 @@ dependency_overrides:
   analyzer: 1.7.0  
 
 flutter:
+
   uses-material-design: true
+
+  fonts:
+    - family: Estedad
+      fonts:
+        - asset: assets/fonts/Estedad-Thin.ttf
+          weight: 200
+        - asset: assets/fonts/Estedad-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Estedad-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Estedad-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Estedad-Black.ttf
+          weight: 900
+    - family: Estedad-FD
+      fonts:
+        - asset: assets/fonts/Estedad-FD-Thin.ttf
+          weight: 200
+        - asset: assets/fonts/Estedad-FD-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Estedad-FD-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Estedad-FD-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Estedad-FD-Black.ttf
+          weight: 900
+
+
 flutter_intl:
   enabled: true
   class_name: Strings

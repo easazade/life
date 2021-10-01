@@ -9,10 +9,19 @@ final appRouter = Liferouter();
 Strings get strings => Strings.current;
 
 Future setupDependencyTree() async {
-  _setupDatabase();
+  await _setupDatabase();
 }
 
 Future _setupDatabase() async {
   var db = await Database.createInstance();
+  if (db.getRootNodes().isEmpty) {
+    await db.addInitialData();
+  }
   getIt.registerLazySingleton(() => db);
 }
+
+// ################### global getters ########################
+
+T inject<T extends Object>() => getIt.get<T>();
+
+Database get database => inject();
