@@ -11,7 +11,7 @@ class LifeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: strings.appName,
+      title: 'Life',
       localizationsDelegates: const [
         Strings.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -19,12 +19,12 @@ class LifeApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: Strings.delegate.supportedLocales,
+      routeInformationParser: appRouter.defaultRouteParser(),
       routerDelegate: appRouter.delegate(
         initialRoutes: [
           const HomeRoute(),
         ],
       ),
-      routeInformationParser: appRouter.defaultRouteParser(),
     );
   }
 }
