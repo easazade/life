@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:life/src/data/models/node.dart';
+import 'package:life/src/utils/log.dart';
 
 class Database {
   late final Box<DataNode> _dataNodes;
@@ -37,5 +39,16 @@ class Database {
     var node2 = DataNode(id: 1, question: 'چرا حالت خوب نیست؟', answer: null, children: []);
     await saveDataNode(node1);
     await saveDataNode(node2);
+  }
+
+  Future exportAllDataTo(Directory directory) async {
+    var data = [];
+    getRootNodes().forEach((nodeData) {
+      data.add(nodeData.toJson());
+    });
+    Log.d(jsonEncode(data));
+    var exportJsonFile = File('${directory.path}/export ${DateTime.now().toString().replaceAll(':', '-')}.txt');
+    await exportJsonFile.create(recursive: true);
+    await exportJsonFile.writeAsString(jsonEncode(data));
   }
 }

@@ -18,3 +18,14 @@ class DataNode extends HiveObject with _$DataNode {
     @HiveField(3) @Default([]) final List<DataNode> children,
   }) = DN;
 }
+
+extension DataNodeExt on DataNode {
+  Map<String, dynamic> toJson() {
+    var map = <String, dynamic>{};
+    map['id'] = id;
+    map['question'] = question;
+    map['answer'] = answer;
+    map['children'] = children.map((e) => e.toJson()).toList();
+    return map;
+  }
+}
