@@ -22,6 +22,7 @@ class LifeApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      locale: Strings.delegate.supportedLocales[0],
       supportedLocales: Strings.delegate.supportedLocales,
       routeInformationParser: appRouter.defaultRouteParser(),
       routerDelegate: appRouter.delegate(

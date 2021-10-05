@@ -1,4 +1,8 @@
 {
   "appName": "Life",
-  "home": "home"
+  "home": "خانه",
+  "whatsYourProblem": "مشکلت چیه؟",
+  "attractYourWish": "خواسته ات رو جذب کن",
+  "changeWithin": "از درون تغییر کن",
+  "feelGoodNow": "الان حالت رو خوب کن"
 }

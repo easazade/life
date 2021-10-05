@@ -1,9 +1,7 @@
-import 'dart:io';
-
-import 'package:external_path/external_path.dart';
 import 'package:flutter/material.dart';
+import 'package:graphview/GraphView.dart';
 import 'package:life/src/di/dependency_tree.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:life/src/routes/router.gr.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,14 +9,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _State extends State<HomeScreen> {
-  var _data = '';
-
-  _State() {
-    var nodes = database.getRootNodes();
-    for (var node in nodes) {
-      _data += '${node.question!} \n';
-    }
-  }
+  final Graph graph = Graph()..isTree = true;
+  BuchheimWalkerConfiguration builder = BuchheimWalkerConfiguration();
 
   @override
   Widget build(BuildContext context) {
@@ -31,25 +23,27 @@ class _State extends State<HomeScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(_data),
             ElevatedButton(
-              child: Text('export data'),
-              onPressed: _exportData,
+              child: Text(strings.feelGoodNow, textAlign: TextAlign.center),
+              onPressed: () {
+                appRouter.push(FeelGoodNowRoute());
+              },
+            ),
+            ElevatedButton(
+              child: Text(strings.changeWithin, textAlign: TextAlign.center),
+              onPressed: () {
+                appRouter.push(ChangeWithinRoute());
+              },
+            ),
+            ElevatedButton(
+              child: Text(strings.attractYourWish, textAlign: TextAlign.center),
+              onPressed: () {
+                appRouter.push(AttractWishRoute());
+              },
             ),
           ],
         ),
       ),
     );
-  }
-
-  Future _exportData() async {
-    if (await Permission.storage.request().isGranted &&
-        await Permission.manageExternalStorage.request().isGranted &&
-        await Permission.accessMediaLocation.request().isGranted) {
-      var directories = await ExternalPath.getExternalStorageDirectories();
-      var directory = Directory('${directories[0]}/Life');
-      await directory.create();
-      database.exportAllDataTo(directory);
-    }
   }
 }

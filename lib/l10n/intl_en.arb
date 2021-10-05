@@ -1,4 +1,8 @@
 {
   "appName": "Life",
-  "home": "home"
+  "home": "home",
+  "whatsYourProblem": "what\\'s your problem?",
+  "attractYourWish": "Attract Your Wish",
+  "changeWithin": "Change Within",
+  "feelGoodNow": "Feel Good Now"
 }
