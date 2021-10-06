@@ -23,10 +23,17 @@ class $AssetsFontsGen {
   String get mehrganIcons => 'assets/fonts/MehrganIcons.ttf';
 }
 
+class $AssetsSvgGen {
+  const $AssetsSvgGen();
+
+  String get myLifeLogo => 'assets/svg/my_life_logo.svg';
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsFontsGen fonts = $AssetsFontsGen();
+  static const $AssetsSvgGen svg = $AssetsSvgGen();
 }
 
 class AssetGenImage extends AssetImage {
