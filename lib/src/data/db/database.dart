@@ -24,28 +24,25 @@ class Database {
 
   Future saveDataNode(DataNode dataNode) => _dataNodes.add(dataNode);
 
-  Future clearAll() async {
-    await _dataNodes.clear();
+  Future clearAll() => _dataNodes.clear();
+
+  List<DataNode> getRootNodes() {
+    var nodes = _dataNodes.values.toList();
+    return nodes;
   }
 
-  List<DataNode> getRootNodes() => _dataNodes.values.toList();
-
-  Future deleteDataNode(DataNode dataNode) async {
-    await _dataNodes.delete(dataNode.key);
-  }
+  Future deleteDataNode(DataNode dataNode) => _dataNodes.delete(dataNode.key);
 
   Future addInitialData() async {
-    var node1 = DataNode(id: 0, question: 'مشکلت چیه؟', answer: null, children: []);
-    var node2 = DataNode(id: 1, question: 'چرا حالت خوب نیست؟', answer: null, children: []);
+    var node1 = DataNode(id: 0, question: 'مشکلت چیه؟', answer: '', children: []);
+    var node2 = DataNode(id: 1, question: 'چرا حالت خوب نیست؟', answer: '', children: []);
     await saveDataNode(node1);
     await saveDataNode(node2);
   }
 
   Future exportAllDataTo(Directory directory) async {
     var data = [];
-    getRootNodes().forEach((nodeData) {
-      data.add(nodeData.toJson());
-    });
+    getRootNodes().forEach((nodeData) => data.add(nodeData.toJson()));
     Log.d(jsonEncode(data));
     var exportJsonFile = File('${directory.path}/export ${DateTime.now().toString().replaceAll(':', '-')}.txt');
     await exportJsonFile.create(recursive: true);
